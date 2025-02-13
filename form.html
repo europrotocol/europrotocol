@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заполнение европротокола</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Шапка с красивым фоном -->
+  <header class="header">
+    <div class="header-content">
+      <h1>Заполнение европротокола</h1>
+      <p>Быстро и удобно оформите документы после ДТП</p>
+    </div>
+  </header>
+
+  <div class="container mt-5">
+    <form id="europrotocol-form" class="bg-light p-4 rounded shadow">
+      <!-- Данные о ДТП -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="mb-0"><i class="fas fa-car-crash me-2"></i>Данные о ДТП</h2>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="accident-date" class="form-label">Дата и время ДТП:</label>
+            <input type="datetime-local" class="form-control" id="accident-date" required>
+          </div>
+          <div class="mb-3">
+            <label for="accident-location" class="form-label">Место ДТП:</label>
+            <input type="text" class="form-control" id="accident-location" required>
+          </div>
+          <div class="mb-3">
+            <label for="participants-count" class="form-label">Количество участников:</label>
+            <select class="form-control" id="participants-count" required>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="accident-scheme" class="form-label">Схема ДТП (загрузите изображение):</label>
+            <input type="file" class="form-control" id="accident-scheme" accept="image/*">
+          </div>
+          <div class="mb-3">
+            <label for="witnesses" class="form-label">Свидетели (ФИО и контактные данные):</label>
+            <textarea class="form-control" id="witnesses"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Участники ДТП -->
+      <div id="participants-section">
+        <!-- Участник 1 -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h2 class="mb-0"><i class="fas fa-user me-2"></i>Данные участника 1</h2>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="participant1-name" class="form-label">ФИО:</label>
+              <input type="text" class="form-control" id="participant1-name" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant1-phone" class="form-label">Контактный телефон:</label>
+              <input type="tel" class="form-control" id="participant1-phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant1-license" class="form-label">Данные водительского удостоверения:</label>
+              <input type="text" class="form-control" id="participant1-license" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant1-vehicle" class="form-label">Данные транспортного средства (марка, модель, госномер, VIN):</label>
+              <input type="text" class="form-control" id="participant1-vehicle" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant1-insurance" class="form-label">Данные страхового полиса (номер, срок действия):</label>
+              <input type="text" class="form-control" id="participant1-insurance" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Участник 2 -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h2 class="mb-0"><i class="fas fa-user me-2"></i>Данные участника 2</h2>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="participant2-name" class="form-label">ФИО:</label>
+              <input type="text" class="form-control" id="participant2-name" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant2-phone" class="form-label">Контактный телефон:</label>
+              <input type="tel" class="form-control" id="participant2-phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant2-license" class="form-label">Данные водительского удостоверения:</label>
+              <input type="text" class="form-control" id="participant2-license" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant2-vehicle" class="form-label">Данные транспортного средства (марка, модель, госномер, VIN):</label>
+              <input type="text" class="form-control" id="participant2-vehicle" required>
+            </div>
+            <div class="mb-3">
+              <label for="participant2-insurance" class="form-label">Данные страхового полиса (номер, срок действия):</label>
+              <input type="text" class="form-control" id="participant2-insurance" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка для добавления участников -->
+      <div class="text-center mb-4">
+        <button type="button" id="add-participant" class="btn btn-success"><i class="fas fa-plus me-2"></i>Добавить участника</button>
+      </div>
+
+      <!-- Описание повреждений -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="mb-0"><i class="fas fa-car-mechanic me-2"></i>Описание повреждений</h2>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="damage-description" class="form-label">Перечень повреждений:</label>
+            <textarea class="form-control" id="damage-description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="damage-photos" class="form-label">Фотографии повреждений:</label>
+            <input type="file" class="form-control" id="damage-photos" accept="image/*" multiple>
+          </div>
+        </div>
+      </div>
+
+      <!-- Обстоятельства ДТП -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="mb-0"><i class="fas fa-exclamation-circle me-2"></i>Обстоятельства ДТП</h2>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="accident-description" class="form-label">Описание того, как произошло ДТП:</label>
+            <textarea class="form-control" id="accident-description" required></textarea>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="no-disagreements" required>
+            <label for="no-disagreements" class="form-check-label">Подтверждаю, что разногласий между участниками ДТП нет.</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-paper-plane me-2"></i>Отправить данные</button>
+    </form>
+  </div>
+
+  <!-- Уведомление об успешной отправке -->
+  <div id="success-modal" class="success-modal">
+    <div class="success-content">
+      <i class="fas fa-check-circle"></i>
+      <p>Отправлено!</p>
+    </div>
+  </div>
+
+  <!-- Подключаем библиотеки -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
